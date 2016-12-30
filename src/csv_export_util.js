@@ -35,7 +35,7 @@ function toString(data, keys) {
       }
     }).filter(key => {
       return typeof key !== 'undefined';
-    }).join(',') + '\n';
+    }).join('\t') + '\n';
   }
 
   keys = keys.filter(key => {
@@ -46,9 +46,9 @@ function toString(data, keys) {
     keys.map(function(col, i) {
       const { field, format } = col;
       const value = typeof format !== 'undefined' ? format(row[field], row) : row[field];
-      const cell = typeof value !== 'undefined' ? ('"' + value + '"') : '';
+      const cell = typeof value !== 'undefined' ? value : '';
       dataString += cell;
-      if (i + 1 < keys.length) dataString += ',';
+      if (i + 1 < keys.length) dataString += '\t';
     });
 
     dataString += '\n';
